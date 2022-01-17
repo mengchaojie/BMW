@@ -1,0 +1,71 @@
+﻿<Window x:Class="WpfApp1.MainFrame"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="MainFrame" Height="800" Width="1200" ResizeMode="NoResize" WindowStyle="None">
+    <Window.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Margin" Value="20,10,10,20"></Setter>
+            <Setter Property="Width" Value="150"></Setter>
+            <Setter Property="Height" Value="40"></Setter>
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="Red"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid Background="#1E1E1E">
+        <Border Background="#1E1E2F" Height="60" VerticalAlignment="Top" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+            <TextBlock Text="BMW CHINA" Foreground="White" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft YaHei" FontWeight="ExtraBold"></TextBlock>
+        </Border>
+        <Button Name="CloseButton" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5" Background="Transparent" BorderThickness="0" Click="CloseButton_Click">
+            <Path Stroke="Red" Data="M0 0 20 20 M0 20 20 0" StrokeThickness="3"></Path>
+        </Button>
+
+        <Grid Margin="10,70,10,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="180"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Background="#1B1F1E">
+                <UniformGrid Rows="5">
+                    <Border>
+                        <StackPanel>
+                            <Ellipse Width="80" Height="80" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="F:\Code\c#\WpfApplication1\WpfApp1\WpfApp1\Assets\person.jpeg"></ImageBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <TextBlock Text="ME Manager" HorizontalAlignment="Center" Foreground="White" FontSize="15"></TextBlock>
+                        </StackPanel>
+
+                    </Border>
+                    <Border>
+                        <StackPanel>
+                            <Button Content="Personal" Style="{StaticResource ButtonStyle}" Command="{Binding SwitchCommand}" CommandParameter="Personal"></Button>
+                            <Button Content="Employees" Style="{StaticResource ButtonStyle}" Command="{Binding SwitchCommand}" CommandParameter="Employees"></Button>
+                        </StackPanel>
+                    </Border>
+                    <Border>
+                        <StackPanel>
+                            <Button Content="Material" Style="{StaticResource ButtonStyle}"></Button>
+                            <Button Content="Project" Style="{StaticResource ButtonStyle}"></Button>
+                        </StackPanel>
+                    </Border>
+                    <Border></Border>
+                    <Border></Border>
+                </UniformGrid>
+            </Grid>
+            <Frame Grid.Column="1" Source="{Binding PageName}" NavigationUIVisibility="Hidden"></Frame>
+        </Grid>
+        
+    </Grid>
+    
+</Window>
